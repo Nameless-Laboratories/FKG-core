@@ -1,0 +1,61 @@
+# FKG-Core Configuration Example
+# Copy to fkg.yaml and modify as needed
+
+instance:
+  # Unique identifier for this FKG instance (use domain-style naming)
+  id: mrn.marin.ca.us
+
+  # Human-readable name for this authority
+  authority_name: Marin Resource Network
+
+  # Geographic jurisdiction covered by this instance
+  jurisdiction: Marin County, CA
+
+  # Ed25519 public key for signing PKG exports (optional in v0.1)
+  # Generate with: fkg keys generate
+  public_key: null
+
+  # Schema version this instance operates on
+  schema_version: v0.1
+
+database:
+  # PostgreSQL connection URL
+  # Format: postgresql+psycopg://user:password@host:port/database
+  url: postgresql+psycopg://fkg:fkg@localhost:5432/fkg
+
+api:
+  # Host to bind the API server
+  host: 127.0.0.1
+
+  # Port for the API server
+  port: 8000
+
+  # Enable CORS (for development)
+  cors_enabled: false
+
+  # Allowed origins for CORS (if enabled)
+  cors_origins: []
+
+federation:
+  # List of trusted remote FKG instances to pull from
+  remotes: []
+  # Example remote configuration:
+  # remotes:
+  #   - id: sonoma.ca.us
+  #     endpoint: https://fkg.sonoma.ca.us
+  #     public_key: ed25519:base64encodedkey...
+  #     trust:
+  #       # Whether to verify PKG signatures (v0.1 defaults to false)
+  #       verify_signatures: false
+  #       # Entity types allowed from this remote
+  #       allow_entity_types:
+  #         - organization
+  #         - service
+  #         - location
+
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+
+  # Log format: json or text
+  format: text

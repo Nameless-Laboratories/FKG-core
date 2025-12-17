@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fkg.schema/v0.1/pkg.manifest.json",
+  "title": "PKG Manifest",
+  "description": "Manifest for a Portable Knowledge Graph snapshot",
+  "type": "object",
+  "required": ["version", "authority_id", "authority_name", "created_at", "schema_version"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "PKG format version",
+      "const": "0.1"
+    },
+    "authority_id": {
+      "type": "string",
+      "description": "ID of the originating authority"
+    },
+    "authority_name": {
+      "type": "string",
+      "description": "Human-readable authority name"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Geographic jurisdiction"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of export"
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version used for entities/edges"
+    },
+    "counts": {
+      "type": "object",
+      "description": "Record counts in this PKG",
+      "properties": {
+        "entities": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edges": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sources": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "description": "Files included in this PKG",
+      "properties": {
+        "entities": {
+          "type": "string",
+          "default": "entities.jsonl"
+        },
+        "edges": {
+          "type": "string",
+          "default": "edges.jsonl"
+        },
+        "sources": {
+          "type": "string",
+          "default": "sources.jsonl"
+        },
+        "changelog": {
+          "type": "string",
+          "default": "changelog.jsonl"
+        }
+      }
+    },
+    "checksums": {
+      "type": "object",
+      "description": "SHA256 checksums of included files",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "signature": {
+      "type": "object",
+      "description": "Detached signature information",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["ed25519"]
+        },
+        "public_key": {
+          "type": "string"
+        },
+        "signature_file": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

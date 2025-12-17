@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fkg.schema/v0.1/source.schema.json",
+  "title": "Source Schema",
+  "description": "A data source for provenance tracking",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this source"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the source"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["url", "file", "api", "manual", "dataset"],
+      "description": "Type of source"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the source if applicable"
+    },
+    "dataset_name": {
+      "type": "string",
+      "description": "Name of the dataset"
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the data was fetched"
+    },
+    "license": {
+      "type": "string",
+      "description": "License of the source data"
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about the source"
+    }
+  },
+  "additionalProperties": true
+}

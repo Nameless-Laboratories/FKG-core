@@ -1,6 +1,6 @@
 # FKG-Core
 
-County-hosted knowledge graph runtime for community resource data.
+County-hosted knowledge graph runtime for community resource data
 
 fkg-core/
 ├── README.md
